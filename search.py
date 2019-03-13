@@ -14,6 +14,6 @@ def dfs(cake):
         if cur_cakes.goal():
             return cur_cakes
         if cur_cakes not in visited:
-            print(cur_cakes)
+            cur_cakes.print_flip()
             visited.append(cur_cakes)
             stack.extend(cur_cakes.next_states())

@@ -11,15 +11,17 @@ class PancakeState:
                     integer.
         a_cost: Actual Cost
         heur:   Heuristic value
-        flip_i: Index at which pancakes were flipped
+        flip_i: Index at which pancakes were flipped to get to this state
+        parent: Previous PancakeState
     """
 
-    def __init__(self, cakes, actual_cost, heuristic, flip_i):
+    def __init__(self, cakes, actual_cost, heuristic):
         """Creates a PancakeState"""
         self.cakes = cakes
         self.a_cost = actual_cost
         self.heur = heuristic
-        self.flip_i = flip_i
+        self.flip_i = None
+        self.parent = None
 
     def __str__(self):
         """Returns object string"""
@@ -47,6 +49,8 @@ class PancakeState:
         for i in range(len(self.cakes) - 1):
             new_state = copy.deepcopy(self)
             new_state.a_cost += new_state.flip(i)
+            new_state.parent = self
+            new_state.flip_i = i
             states.append(new_state)
         states.sort()
         return states
@@ -61,11 +65,12 @@ class PancakeState:
         self.cakes = self.cakes[:index] + flipped
         return len(flipped)
 
-    def flip_string(self):
+    def print_flip(self):
         """The string representation of the pancake stack's last flip"""
-        int_string = str(self.to_int())
-        flipped = int_string[self.flip_i:]
-        return int_string[:self.flip_i] + '|' + flipped
+        if self.parent:
+            int_string = str(self.parent.to_int())
+            flipped = int_string[self.flip_i:]
+            print(int_string[:self.flip_i] + '|' + flipped)
 
     def goal(self):
         """Returns true, if we have reach the goal state"""

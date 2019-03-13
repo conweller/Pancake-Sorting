@@ -15,4 +15,4 @@ assert sys.argv[1][-1] in ["d", "u", "g", "a"]
 # Read in Pancakes
 stack = pc.PancakeState(list(map(int, sys.argv[1][:-1])), 0, 0)
 print(str(stack))
-print(search.dfs(stack))
+search.dfs(stack)
