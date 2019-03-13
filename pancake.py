@@ -17,7 +17,7 @@ class PancakeState:
         parent: Previous PancakeState
     """
 
-    def __init__(self, cakes, actual_cost, heuristic):
+    def __init__(self, cakes):
         """Creates a PancakeState"""
         self.cakes = cakes
         self.a_cost = 0
