@@ -1,7 +1,6 @@
 """Contains all search algorithms"""
 import pancake as pc
 
-# TODO Need print statements and docstrings
 
 
 def dfs(cake):
@@ -16,4 +15,4 @@ def dfs(cake):
         if cur_cakes not in visited:
             cur_cakes.print_flip()
             visited.append(cur_cakes)
-            stack.extend(cur_cakes.next_states())
+            stack = cur_cakes.next_states() + stack
