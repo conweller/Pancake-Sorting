@@ -23,7 +23,11 @@ def dfs(cake):
 
 def ufs(cake):
     return None
+
+
 def greedy(cake):
     return None
+
+
 def a_star(cake):
     return None
