@@ -19,4 +19,3 @@ def dfs(cake):
             cur_cakes.print_flip()
             visited.append(cur_cakes)
             stack.extend(cur_cakes.next_states())
-    
