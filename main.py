@@ -13,7 +13,7 @@ assert sys.argv[1][:-1].isdigit()
 assert sys.argv[1][-1] in ["d", "u", "g", "a"]
 
 # Read in Pancakes
-pancakes = pc.PancakeState(list(map(int, sys.argv[1][:-1])), 0, 0)
+pancakes = pc.PancakeState(list(map(int, sys.argv[1][:-1])))
 
 search_type = {"d": search.dfs, "u": search.ufs, "g": search.greedy, "a": search.a_star}
 

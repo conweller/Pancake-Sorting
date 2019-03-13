@@ -20,9 +20,9 @@ class PancakeState:
     def __init__(self, cakes, actual_cost, heuristic):
         """Creates a PancakeState"""
         self.cakes = cakes
-        self.a_cost = actual_cost
-        self.heur = heuristic
-        self.flip_i = None
+        self.a_cost = 0
+        self.heur = None
+        self.flip_i = len(cakes) - 1
         self.parent = None
 
     def __int__(self):
@@ -36,7 +36,6 @@ class PancakeState:
     def __repr__(self):
         """Returns object string"""
         return str(int(self))
-
 
     def __lt__(self, other):
         """Self less than other"""
@@ -68,13 +67,29 @@ class PancakeState:
         self.cakes = self.cakes[:index] + flipped
         return len(flipped)
 
+    def print_path(self):
+        """
+        Prints the sequence in which the pancakes are flipped according to
+        the algorithm used
+        """
+        path = []
+        path.append(self)
+        cur_cakes = self
+        while cur_cakes.parent is not None:
+            path.append(cur_cakes.parent)
+            cur_cakes = cur_cakes.parent
+            # print(cur_cakes)
+        for c in reversed(path):
+            c.print_flip()
+
     def print_flip(self):
         """The string representation of the pancake stack's last flip"""
         if self.parent:
             parent_string = str(self.parent)
-            flipped = parent_string[self.flip_i :]
+            flipped = parent_string[self.flip_i:]
             print(
-                parent_string[: self.flip_i] + "|" + flipped + " g=" + str(self.a_cost)
+                parent_string[: self.flip_i] + "|" +
+                flipped + " g=" + str(self.a_cost)
             )
 
     def goal(self):
