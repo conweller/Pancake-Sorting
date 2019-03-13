@@ -11,13 +11,15 @@ class PancakeState:
                     integer.
         a_cost: Actual Cost
         heur:   Heuristic value
+        flip_i: Index at which pancakes were flipped
     """
 
-    def __init__(self, cakes, actual_cost, heuristic):
+    def __init__(self, cakes, actual_cost, heuristic, flip_i):
         """Creates a PancakeState"""
         self.cakes = cakes
         self.a_cost = actual_cost
         self.heur = heuristic
+        self.flip_i = flip_i
 
     def __str__(self):
         """Returns object string"""
@@ -56,8 +58,14 @@ class PancakeState:
         """
         flipped = self.cakes[index:]
         flipped.reverse()
-        self.cakes = self.cakes[:index] + (flipped)
+        self.cakes = self.cakes[:index] + flipped
         return len(flipped)
+
+    def flip_string(self):
+        """The string representation of the pancake stack's last flip"""
+        int_string = str(self.to_int())
+        flipped = int_string[self.flip_i:]
+        return int_string[:self.flip_i] + '|' + flipped
 
     def goal(self):
         """Returns true, if we have reach the goal state"""
