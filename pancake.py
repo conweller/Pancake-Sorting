@@ -22,26 +22,23 @@ class PancakeState:
         self.heur = heuristic
         self.flip_i = None
         self.parent = None
+    
+    def __int__(self):
+        """Returns the integer representation of self's pancakes"""
+        return int("".join(list(map(str, self.cakes))))
 
     def __str__(self):
         """Returns object string"""
-        return str(str(self.to_int()))
-
-    def __repr__(self):
-        """Returns object string"""
-        return str(self)
+        return str(str(int(self)))
 
     def __lt__(self, other):
         """Self less than other"""
-        return self.to_int() < other.to_int()
+        return int(self) < int(other)
 
     def __eq__(self, other):
         """True if lists are equal"""
         return self.cakes == other.cakes
 
-    def to_int(self):
-        """Returns the integer representation of self's pancakes"""
-        return int("".join(list(map(str, self.cakes))))
 
     def next_states(self):
         """Returns sorted list of all possible CakeStackStaes after 1 flip"""
@@ -69,8 +66,14 @@ class PancakeState:
         """The string representation of the pancake stack's last flip"""
         if self.parent:
             parent_string = str(self.parent)
-            flipped = parent_string[self.flip_i:]
-            print(parent_string[: self.flip_i] + "|" + flipped)
+            flipped = parent_string[self.flip_i :]
+            print(
+                parent_string[: self.flip_i] + 
+                "|" + 
+                flipped + 
+                " g=" +
+                str(self.a_cost)
+            )
 
     def goal(self):
         """Returns true, if we have reach the goal state"""
