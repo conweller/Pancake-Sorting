@@ -1,2 +1,2 @@
-run:
-	python3 main.py 3411a
+run: main.py search.py pancake.py
+	python3 main.py 4132a

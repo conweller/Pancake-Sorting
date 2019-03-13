@@ -25,7 +25,7 @@ class PancakeState:
 
     def __str__(self):
         """Returns object string"""
-        return str(self.cakes)
+        return str(str(self.to_int()))
 
     def __repr__(self):
         """Returns object string"""
@@ -33,7 +33,7 @@ class PancakeState:
 
     def __lt__(self, other):
         """Self less than other"""
-        return self.to_int() > other.to_int()
+        return self.to_int() < other.to_int()
 
     def __eq__(self, other):
         """True if lists are equal"""
@@ -44,7 +44,7 @@ class PancakeState:
         return int("".join(list(map(str, self.cakes))))
 
     def next_states(self):
-        """Returns list of all possible CakeStackStaes after 1 flip"""
+        """Returns sorted list of all possible CakeStackStaes after 1 flip"""
         states = []
         for i in range(len(self.cakes) - 1):
             new_state = copy.deepcopy(self)
@@ -68,9 +68,9 @@ class PancakeState:
     def print_flip(self):
         """The string representation of the pancake stack's last flip"""
         if self.parent:
-            int_string = str(self.parent.to_int())
-            flipped = int_string[self.flip_i:]
-            print(int_string[:self.flip_i] + '|' + flipped)
+            parent_string = str(self.parent)
+            flipped = parent_string[self.flip_i:]
+            print(parent_string[: self.flip_i] + "|" + flipped)
 
     def goal(self):
         """Returns true, if we have reach the goal state"""
