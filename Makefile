@@ -1,2 +1,2 @@
 run: main.py search.py pancake.py
-	python3 main.py 4132d
+	python3 -i main.py 4132d

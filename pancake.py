@@ -1,7 +1,9 @@
 """This module contains the PancakeState class and methods"""
 import copy
+import functools
 
 
+@functools.total_ordering
 class PancakeState:
     """The current state of the stack of cakes
 
@@ -29,7 +31,12 @@ class PancakeState:
 
     def __str__(self):
         """Returns object string"""
-        return str(str(int(self)))
+        return str(int(self))
+
+    def __repr__(self):
+        """Returns object string"""
+        return str(int(self))
+
 
     def __lt__(self, other):
         """Self less than other"""
