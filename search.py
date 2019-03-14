@@ -1,7 +1,7 @@
 """Contains all search algorithms"""
-import pancake as pc
-import heapq as hq
 import copy
+import heapq as hq
+import pancake as pc
 
 
 def dfs(cake):
@@ -85,7 +85,8 @@ def a_star(cake):
             visited.append(cur_cakes)
             for c in cur_cakes.next_states():
                 fringe_push(
-                    fringe, cur_cakes.a_cost + cur_cakes.heuristic(sorted_list), c
+                    fringe, cur_cakes.a_cost +
+                    cur_cakes.heuristic(sorted_list), c
                 )
 
 
