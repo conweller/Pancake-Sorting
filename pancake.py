@@ -77,20 +77,6 @@ class PancakeState:
         self.cakes = self.cakes[:index] + flipped
         return len(flipped)
 
-    def print_path(self):
-        """
-        Prints the sequence in which the pancakes are flipped according to
-        the algorithm used
-        """
-        path = []
-        path.append(self)
-        cur_cakes = self
-        while cur_cakes.parent:
-            path.append(cur_cakes.parent)
-            cur_cakes = cur_cakes.parent
-            # print(cur_cakes)
-        for c in reversed(path):
-            c.print_flip()
 
     def print_path(self, sorted_list):
         """
@@ -103,20 +89,25 @@ class PancakeState:
         while cur_cakes.parent:
             path.append(cur_cakes.parent)
             cur_cakes = cur_cakes.parent
-            # print(cur_cakes)
         for c in reversed(path):
             c.print_flip(sorted_list)
 
     def print_flip(self, sorted_list):
-        """The string representation of the pancake stack's last flip"""
+        """
+        The string representation of the pancake stack's last flip and the cost
+        of flip. If sorted_list is not None, it will print the heuristic value
+        as well
+        """
         if self.parent:
             parent_string = str(self.parent)
             flipped = parent_string[self.flip_i:]
             print(
                 parent_string[: self.flip_i] + "|" +
-                flipped + " g=" + str(self.a_cost) +
-                " h=" + str(self.parent.heuristic(sorted_list))
-            )
+                flipped + " g=" + str(self.a_cost),end="")
+            if sorted_list:
+                print(" h=" + str(self.parent.heuristic(sorted_list)))
+            else:
+                print()
 
 
     def goal(self):

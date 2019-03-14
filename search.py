@@ -60,7 +60,7 @@ def greedy(cake):
 
 
 def a_star(cake):
-    """"""
+    """A star search, using number of pancakes out of place as heuristic"""
     sorted_list = copy.deepcopy(cake.cakes)
     sorted_list.sort(reverse=True)
     fringe = []
@@ -74,11 +74,9 @@ def a_star(cake):
             return cur_cakes
         if cur_cakes not in visited:
             visited.append(cur_cakes)
-            print(cur_cakes.a_cost)
             for c in cur_cakes.next_states():
-                fringe_push(fringe, cake.a_cost + cur_cakes.heuristic(sorted_list), c)
-
-
+                fringe_push(fringe, cur_cakes.a_cost +
+                        cur_cakes.heuristic(sorted_list), c)
 
 def fringe_push(fringe, priority, cake):
     """
