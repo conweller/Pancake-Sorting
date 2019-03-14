@@ -46,12 +46,13 @@ class PancakeState:
     def heuristic(self, sorted_list):
         """
         Returns the heuristic value for the pancakes state, the number of
-        pancakes out of place
+        pancakes out of place, consumes the sortest list we compare the
+        pancakes against
         """
-        h = 0
+        heuristic = 0
         for i in range(len(self.cakes)):
-            h += self.cakes[i] != sorted_list[i]
-        return h
+            heuristic += self.cakes[i] != sorted_list[i]
+        return heuristic
 
     def next_states(self):
         """
@@ -77,7 +78,6 @@ class PancakeState:
         self.cakes = self.cakes[:index] + flipped
         return len(flipped)
 
-
     def print_path(self, sorted_list):
         """
         Prints the sequence in which the pancakes are flipped according to
@@ -89,29 +89,31 @@ class PancakeState:
         while cur_cakes.parent:
             path.append(cur_cakes.parent)
             cur_cakes = cur_cakes.parent
-        for c in reversed(path):
-            c.print_flip(sorted_list)
+        for cakes in reversed(path):
+            cakes.print_flip(sorted_list)
 
     def print_flip(self, sorted_list):
         """
-        The string representation of the pancake stack's last flip and the cost
-        of flip. If sorted_list is not None, it will print the heuristic value
-        as well
+        The string representation of the pancake stack's last flip and the
+        cost of flip. If sorted_list is not None, it will print the
+        heuristic value as well
         """
         if self.parent:
             parent_string = str(self.parent)
             flipped = parent_string[self.flip_i:]
             print(
                 parent_string[: self.flip_i] + "|" +
-                flipped + " g=" + str(self.a_cost),end="")
+                flipped + " g=" + str(self.a_cost),
+                end="",
+            )
             if sorted_list:
                 print(" h=" + str(self.parent.heuristic(sorted_list)))
             else:
                 print()
 
-
     def goal(self):
         """Returns true, if we have reach the goal state"""
         return all(
-            self.cakes[i] >= self.cakes[i + 1] for i in range(len(self.cakes) - 1)
+            self.cakes[i] >= self.cakes[i + 1]
+            for i in range(len(self.cakes) - 1)
         )
