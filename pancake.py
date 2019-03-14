@@ -5,12 +5,12 @@ import functools
 
 @functools.total_ordering
 class PancakeState:
-    """The current state of the stack of cakes
+    """The current state of the stack of pancakes
 
     Attributes:
-        cakes:  list of integers representing pancakes, the larger the
-                    integer, the larger the pancake, the bottom is the first
-                    integer.
+        cakes:  list of integers, each representing a pancake. The larger the
+                    integer, the larger the pancake. The integers are listed
+                    from bottom to top.
         a_cost: Actual Cost
         flip_i: Index at which pancakes were flipped to get to this state
         parent: Previous PancakeState
