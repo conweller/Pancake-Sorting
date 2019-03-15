@@ -59,7 +59,7 @@ def greedy(cake):
         if cur_cakes not in visited:
             visited.append(cur_cakes)
             for c in cur_cakes.next_states():
-                fringe_push(fringe, cur_cakes.heuristic(sorted_list), c)
+                fringe_push(fringe, c.heuristic(sorted_list), c)
 
 
 def a_star(cake):
@@ -85,8 +85,8 @@ def a_star(cake):
             visited.append(cur_cakes)
             for c in cur_cakes.next_states():
                 fringe_push(
-                    fringe, cur_cakes.a_cost +
-                    cur_cakes.heuristic(sorted_list), c
+                    fringe, c.a_cost +
+                    c.heuristic(sorted_list), c
                 )
 
 

@@ -103,7 +103,7 @@ class PancakeState:
             flipped = parent_string[self.flip_i:]
             print(
                 parent_string[: self.flip_i] + "|" +
-                flipped + " g=" + str(self.a_cost),
+                flipped + " g=" + str(self.parent.a_cost),
                 end="",
             )
             if sorted_list:
