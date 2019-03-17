@@ -36,27 +36,23 @@ class PancakeState:
         return str(int(self))
 
     def __lt__(self, other):
-        """Self less than other"""
+        """Is self's integer representation less than other's"""
         return int(self) < int(other)
 
     def __eq__(self, other):
         """True if lists are equal"""
         return self.cakes == other.cakes
 
-    def heuristic(self, sorted_list):
-        """
-        Returns the heuristic value for the pancakes state, the number of
-        pancakes out of place, consumes the sortest list we compare the
-        pancakes against
-        """
-        heuristic = 0
-        for i in range(len(self.cakes)):
-            heuristic += self.cakes[i] != sorted_list[i]
-        return heuristic
+    def goal(self):
+        """Returns true, if we have reach the goal state"""
+        return all(
+            self.cakes[i] >= self.cakes[i + 1]
+            for i in range(len(self.cakes) - 1)
+        )
 
     def next_states(self):
         """
-        Returns sorted list of all possible CakeStackStaes after 1 flip
+        Returns sorted list of all possible PancakeStates after 1 flip
         """
         states = []
         for i in range(len(self.cakes) - 1):
@@ -70,13 +66,24 @@ class PancakeState:
 
     def flip(self, index):
         """
-        Flips cakes whose indexes are greater than or equal the inputted
+        Flips pancakes whose indexes are greater than or equal the inputted
         index, returns the cost of the flip
         """
         flipped = self.cakes[index:]
         flipped.reverse()
         self.cakes = self.cakes[:index] + flipped
         return len(flipped)
+
+    def heuristic(self, sorted_list):
+        """
+        Returns the heuristic value for the pancakes state, the number of
+        pancakes out of place, consumes the sortest list we compare the
+        pancakes against
+        """
+        heuristic = 0
+        for i in range(len(self.cakes)):
+            heuristic += self.cakes[i] != sorted_list[i]
+        return heuristic
 
     def print_path(self, sorted_list):
         """
@@ -110,10 +117,3 @@ class PancakeState:
                 print(" h=" + str(self.parent.heuristic(sorted_list)))
             else:
                 print()
-
-    def goal(self):
-        """Returns true, if we have reach the goal state"""
-        return all(
-            self.cakes[i] >= self.cakes[i + 1]
-            for i in range(len(self.cakes) - 1)
-        )
