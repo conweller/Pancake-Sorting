@@ -25,12 +25,19 @@ def prompt():
     Prompt the user to enter input, and then performs the corresponding search
     algorith using that input
     """
-    user_input = input("Enter four digits an one charcter (####X):\n")
-    assert len(user_input) == 5
-    assert user_input[:-1].isdigit()
-    assert user_input[-1] in ["d", "u", "g", "a"]
-    SEARCH_TYPE[user_input[-1]
-                ](pc.PancakeState(list(map(int, user_input[:-1]))))
+    print("\nSearch characters:")
+    print("d: DFS      u: UCS")
+    print("g: Greedy   a: A*")
+    print("Enter q to exit\n")
+    while True:
+        user_input = input("Enter four digits an one search char (####X):\n")
+        if user_input == 'q':
+            break
+        assert len(user_input) == 5
+        assert user_input[:-1].isdigit()
+        assert user_input[-1] in ["d", "u", "g", "a"]
+        SEARCH_TYPE[user_input[-1]
+                    ](pc.PancakeState(list(map(int, user_input[:-1]))))
 
 
 if len(sys.argv) > 1:

@@ -1,0 +1,8 @@
+Compile and run with python3 main.py
+
+If a command line argument is given in the form of ####x
+the search algorithm represented by x will be performed
+on the stack of pancakes represented by ####.
+
+If no argument is given, the program will prompt the user
+to enter input in the form of ####x.
