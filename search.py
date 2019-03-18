@@ -63,7 +63,7 @@ def greedy(cake):
 
 
 def a_star(cake):
-    """A star search, using number of pancakes out of place as heuristic"""
+    """A star search, using max ID of out of place pancake as a heuristic"""
     sorted_list = copy.deepcopy(cake.cakes)
     sorted_list.sort(reverse=True)
     fringe = []
