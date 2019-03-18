@@ -38,7 +38,7 @@ def ucs(cake):
 
 
 def greedy(cake):
-    """Greed search, using number of out of place pancakes as a heuristic"""
+    """Greed search, using max ID of out of place pancake as a heuristic"""
     sorted_list = copy.deepcopy(cake.cakes)
     sorted_list.sort(reverse=True)
     fringe = []

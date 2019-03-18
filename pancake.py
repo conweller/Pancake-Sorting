@@ -76,14 +76,16 @@ class PancakeState:
 
     def heuristic(self, sorted_list):
         """
-        Returns the heuristic value for the pancakes state, the number of
-        pancakes out of place, consumes the sortest list we compare the
-        pancakes against
+        Returns the heuristic value for the pancakes state, the ID of the
+        largest pancake that is still out of place, consumes the sortest list
+        we compare the pancakes against
         """
-        heuristic = 0
+        max_out_of_place = 0
         for i in range(len(self.cakes)):
-            heuristic += self.cakes[i] != sorted_list[i]
-        return heuristic
+            if self.cakes[i] != sorted_list[i]:
+                if  max_out_of_place < self.cakes[i]:
+                    max_out_of_place = self.cakes[i]
+        return max_out_of_place
 
     def print_path(self, sorted_list):
         """
