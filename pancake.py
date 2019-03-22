@@ -83,7 +83,7 @@ class PancakeState:
         max_out_of_place = 0
         for i in range(len(self.cakes)):
             if self.cakes[i] != sorted_list[i]:
-                if  max_out_of_place < self.cakes[i]:
+                if max_out_of_place < self.cakes[i]:
                     max_out_of_place = self.cakes[i]
         return max_out_of_place
 
