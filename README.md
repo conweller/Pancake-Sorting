@@ -1,7 +1,8 @@
 # Pancake problem Solution
+
 This programming provides multiple approaches to solving the pancake problem,
 including a depth first search, a uniform cost search, a greedy search, and an
-A* search. As of right now it only works with a pancake stack of size 4, but it
+A * search. As of right now it only works with a pancake stack of size 4, but it
 will work with larger stacks if the necessary assert statement are removed from
 `main.py`.
 
