@@ -16,8 +16,12 @@ import pancake as pc
 import search
 
 
-SEARCH_TYPE = {"d": search.dfs, "u": search.ucs,
-               "g": search.greedy, "a": search.a_star}
+SEARCH_TYPE = {
+    "d": search.dfs,
+    "u": search.ucs,
+    "g": search.greedy,
+    "a": search.a_star
+}
 
 
 def prompt():
@@ -36,8 +40,9 @@ def prompt():
         assert len(user_input) == 5
         assert user_input[:-1].isdigit()
         assert user_input[-1] in ["d", "u", "g", "a"]
-        SEARCH_TYPE[user_input[-1]
-                    ](pc.PancakeState(list(map(int, user_input[:-1]))))
+        SEARCH_TYPE[
+            user_input[-1]
+        ](pc.PancakeState(list(map(int, user_input[:-1]))))
 
 
 if len(sys.argv) > 1:
@@ -47,6 +52,5 @@ if len(sys.argv) > 1:
     SEARCH_TYPE[sys.argv[1][-1]](
         pc.PancakeState(list(map(int, sys.argv[1][:-1])))
     )
-
 else:
     prompt()
