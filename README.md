@@ -1,4 +1,4 @@
-# Pancake problem Solution
+# Pancake Problem Solution
 
 This programming provides multiple approaches to solving the pancake problem,
 including a depth first search, a uniform cost search, a greedy search, and an
